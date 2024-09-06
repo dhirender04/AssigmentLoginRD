@@ -1,6 +1,7 @@
 package com.example.assigmentloginrd.di
 
 import android.content.Context
+import android.content.SharedPreferences
 import androidx.room.Room
 import com.example.assigmentloginrd.db.UserDao
 import com.example.assigmentloginrd.db.UserDatabase
@@ -28,5 +29,10 @@ object AppModule {
     @Provides
     fun provideUserDao(database: UserDatabase): UserDao {
         return database.userDao()
+    }
+    @Provides
+    @Singleton
+    fun provideSharedPreferences(@ApplicationContext context: Context): SharedPreferences {
+        return context.getSharedPreferences("loginPrefs", Context.MODE_PRIVATE)
     }
 }
